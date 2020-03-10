@@ -1,24 +1,33 @@
+import numpy as np
+
+
+K= np.linspace(0,5,1000)
+
+
 theta=float(input("give us the elsatticity of consumption:"))
 beta=float(input("give us the input for the discount rate:"))
 
 def u(c):
     utility=((c**(1-theta))-1)/(1-theta)
-    return utility
+    if c<0:
+        return -np.Inf
+    else:
+        return utility
 
 alpha=float(input("give us the marginal return of capital:"))
 delta= float(input("give us the detrition rate:"))
 
 
-def ct(kt1, kt2):
+def ct(kt1_index, kt2_index, K):
+    kt1 = K[kt1_index]
+    kt2 = K[kt2_index]
     thisct=((kt1**alpha)+(1-delta)*kt1-kt2)
     return thisct
 
-def funct1(ct(kt1, kt2), V):
-    if kt2 /= speciallist:
-        #you still need to define specialist term
-        return -10000000000000000000000000000000000000000
-    elif kt2 == speciallist:
-        return u(ct(kt1, kt2))+ beta*V(kt2)
+def funct1(kt1, kt2, V):
+    cons = ct(kt1,kt2)
+    return u(ct)+ beta*V[kt2]
 
 def funct2 (kt1, kt2, V):
-    max function1(kt1, kt2, V)
+    maximum = max(kt1, kt2, V, key=funct1(ct(kt1, kt2), V))
+    return maximum
