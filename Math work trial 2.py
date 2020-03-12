@@ -11,7 +11,7 @@ import math
 K= np.linspace(0,5,1000)
 
 #Initial value fct
-V=np.linspace(0,0,1000)
+
 
 #Starting Capital (in K) (Here K1=2.5)
 
@@ -40,8 +40,8 @@ def u(c):
         
     #i is the index for k1 / j for k2--> i tells us what the starting capital is equal to
 def ct(i, j, K):
-    kt1 = K[int(i)]
-    kt2 = K[int(j)]
+    kt1 = K[i]
+    kt2 = K[j]
     thisct=((kt1**alpha)+(1-delta)*kt1-kt2)
     return thisct
 
@@ -59,7 +59,7 @@ def obj(i, j, K):
     cons = ct(i,j,K)
     if cons >=0:
         #############Need to define V properly
-        return u(cons)+ beta*V[0]
+        return u(cons)+ beta*V[i]
     else: 
         return -math.exp(200)
     
